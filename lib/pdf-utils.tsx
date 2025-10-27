@@ -1,0 +1,220 @@
+import type { TemplateData } from "./template-data"
+
+export interface PDFGenerationData {
+  template: TemplateData
+  formData: Record<string, string>
+}
+
+export function generatePDFContent(data: PDFGenerationData): string {
+  const { template, formData } = data
+  const currentDate = new Date().toLocaleDateString()
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          margin: 0;
+          padding: 20px;
+          background: white;
+        }
+        .container {
+          max-width: 8.5in;
+          margin: 0 auto;
+          padding: 40px;
+          background: white;
+        }
+        .header {
+          text-align: center;
+          margin-bottom: 30px;
+          border-bottom: 3px solid #4F46E5;
+          padding-bottom: 20px;
+        }
+        .header h1 {
+          margin: 0;
+          color: #4F46E5;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .header p {
+          margin: 5px 0 0 0;
+          color: #666;
+          font-size: 12px;
+        }
+        .section {
+          margin-bottom: 25px;
+        }
+        .section-title {
+          background-color: #f3f4f6;
+          padding: 10px 15px;
+          font-weight: bold;
+          color: #4F46E5;
+          margin-bottom: 15px;
+          border-left: 4px solid #4F46E5;
+        }
+        .form-group {
+          margin-bottom: 15px;
+          display: flex;
+          justify-content: space-between;
+        }
+        .form-group-full {
+          margin-bottom: 15px;
+        }
+        .form-label {
+          font-weight: bold;
+          color: #333;
+          min-width: 200px;
+          flex: 0 0 40%;
+        }
+        .form-value {
+          color: #555;
+          flex: 1;
+          word-break: break-word;
+        }
+        .form-group-full .form-label {
+          display: block;
+          margin-bottom: 5px;
+        }
+        .form-group-full .form-value {
+          display: block;
+          padding-left: 0;
+          border-bottom: 1px solid #ddd;
+          padding-bottom: 8px;
+          min-height: 20px;
+        }
+        .signature-section {
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 1px solid #ddd;
+        }
+        .signature-line {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 30px;
+        }
+        .signature-block {
+          flex: 1;
+          text-align: center;
+        }
+        .signature-line-item {
+          border-top: 1px solid #333;
+          width: 200px;
+          margin: 0 auto;
+          padding-top: 5px;
+          font-size: 12px;
+        }
+        .footer {
+          margin-top: 40px;
+          text-align: center;
+          font-size: 11px;
+          color: #999;
+          border-top: 1px solid #ddd;
+          padding-top: 15px;
+        }
+        .page-break {
+          page-break-after: always;
+        }
+        @media print {
+          body {
+            margin: 0;
+            padding: 0;
+          }
+          .container {
+            padding: 0.5in;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>${template.title}</h1>
+          <p>Generated on ${currentDate}</p>
+        </div>
+
+        ${Object.entries(formData)
+          .map(([key, value]) => {
+            if (!value) return ""
+            const fieldLabel = template.formFields.find((f) => f.name === key)?.label || key
+            return `
+              <div class="section">
+                <div class="form-group-full">
+                  <div class="form-label">${fieldLabel}</div>
+                  <div class="form-value">${escapeHtml(value)}</div>
+                </div>
+              </div>
+            `
+          })
+          .join("")}
+
+        <div class="signature-section">
+          <h3 style="color: #4F46E5; margin-bottom: 20px;">Consent & Signature</h3>
+          <p style="font-size: 12px; line-height: 1.8;">
+            I hereby certify that the information provided above is accurate and complete. 
+            I authorize the use of this form for the purposes stated and understand the terms and conditions outlined herein.
+          </p>
+          
+          <div class="signature-line">
+            <div class="signature-block">
+              <div class="signature-line-item">Parent/Guardian Signature</div>
+            </div>
+            <div class="signature-block">
+              <div class="signature-line-item">Date</div>
+            </div>
+          </div>
+
+          <div class="signature-line" style="margin-top: 40px;">
+            <div class="signature-block">
+              <div class="signature-line-item">Parent/Guardian Printed Name</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>This document was generated by ConsentForms. Please review carefully before signing.</p>
+          <p>For questions or concerns, please contact support.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `
+
+  return htmlContent
+}
+
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  }
+  return text.replace(/[&<>"']/g, (m) => map[m])
+}
+
+export async function downloadPDFFromHTML(htmlContent: string, filename: string): Promise<void> {
+  const blob = new Blob([htmlContent], { type: "text/html" })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement("a")
+  link.href = url
+  link.download = filename.replace(/\.[^/.]+$/, "") + ".html"
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  URL.revokeObjectURL(url)
+}
+
+export async function generateAndDownloadPDF(
+  template: TemplateData,
+  formData: Record<string, string>,
+  filename: string,
+): Promise<void> {
+  const htmlContent = generatePDFContent({ template, formData })
+  await downloadPDFFromHTML(htmlContent, filename)
+}
