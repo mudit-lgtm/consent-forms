@@ -1,0 +1,43 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/template", "destination": "/template.html" },
+    { "source": "/sample", "destination": "/sample.html" },
+    { "source": "/informed-consent", "destination": "/informed-consent.html" },
+    { "source": "/research-interview", "destination": "/research-interview.html" },
+    { "source": "/recording-consent", "destination": "/recording-consent.html" },
+    { "source": "/video-interview", "destination": "/video-interview.html" },
+    { "source": "/qualitative-interview", "destination": "/qualitative-interview.html" },
+    { "source": "/irb-consent", "destination": "/irb-consent.html" },
+    { "source": "/participant-consent", "destination": "/participant-consent.html" },
+    { "source": "/dissertation-consent", "destination": "/dissertation-consent.html" },
+    { "source": "/podcast-consent", "destination": "/podcast-consent.html" },
+    { "source": "/ux-interview", "destination": "/ux-interview.html" },
+    { "source": "/media-interview", "destination": "/media-interview.html" },
+    { "source": "/journalism-consent", "destination": "/journalism-consent.html" },
+    { "source": "/focus-group-consent", "destination": "/focus-group-consent.html" },
+    { "source": "/online-interview", "destination": "/online-interview.html" },
+    { "source": "/student-projects-consent", "destination": "/student-projects-consent.html" },
+    { "source": "/how-to-write", "destination": "/how-to-write.html" },
+    { "source": "/simple-consent-form", "destination": "/simple-consent-form.html" },
+    { "source": "/what-is-consent-form", "destination": "/what-is-consent-form.html" }
+  ]
+}
