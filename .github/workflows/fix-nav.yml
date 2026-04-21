@@ -1,11 +1,14 @@
 name: Fix Navigation Script
 
 on:
-  workflow_dispatch:   # 👈 इससे manual "Run workflow" button आएगा
+  workflow_dispatch:
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # 👈 THIS IS CRITICAL FIX
 
     steps:
       - name: Checkout repo
@@ -17,13 +20,12 @@ jobs:
           python-version: '3.x'
 
       - name: Run script
-        run: |
-          python fix_nav.py
+        run: python fix_nav.py
 
       - name: Commit & Push changes
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add -A
-          git commit -m "auto: fix nav across pages" || echo "No changes to commit"
+          git commit -m "auto: fix nav across pages" || echo "No changes"
           git push
