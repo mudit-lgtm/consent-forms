@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — ConsentForms | Free Interview Consent Forms</title>
+  <meta name="description" content="Learn about ConsentForms — a free platform for researchers, journalists, students, and UX professionals to create, fill, and download interview consent forms instantly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Work Sans', 'Helvetica Neue', sans-serif;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+
+      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+      --radius-xl: 1rem; --radius-full: 9999px;
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --content-narrow: 640px; --content-default: 860px; --content-wide: 1100px;
+
+      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9;
+      --color-surface-offset: #f3f0ec; --color-border: #d4d1ca; --color-divider: #dcd9d5;
+      --color-text: #28251d; --color-text-muted: #7a7974; --color-text-faint: #bab9b4;
+      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-primary-active: #0f3638;
+      --color-primary-highlight: #cedcd8;
+      --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+      --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+    }
+    [data-theme="dark"] {
+      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
+      --color-surface-offset: #1d1c1a; --color-border: #393836; --color-divider: #262523;
+      --color-text: #cdccca; --color-text-muted: #797876; --color-text-faint: #5a5957;
+      --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
+      --color-primary-highlight: #313b3b;
+      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
+        --color-surface-offset: #1d1c1a; --color-border: #393836; --color-divider: #262523;
+        --color-text: #cdccca; --color-text-muted: #797876; --color-text-faint: #5a5957;
+        --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
+        --color-primary-highlight: #313b3b;
+        --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+        --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: var(--space-16); }
+    body {
+      min-height: 100dvh;
+      line-height: 1.7;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+    img, picture, svg { display: block; max-width: 100%; height: auto; }
+    input, button, textarea, select { font: inherit; color: inherit; }
+    h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.2; font-family: var(--font-display); }
+    p, li { text-wrap: pretty; }
+    button { cursor: pointer; background: none; border: none; }
+    a { color: var(--color-primary); text-decoration: none; transition: color var(--transition-interactive); }
+    a:hover { color: var(--color-primary-hover); }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    .container { max-width: var(--content-default); margin-inline: auto; padding-inline: var(--space-6); }
+    .container--narrow { max-width: var(--content-narrow); margin-inline: auto; padding-inline: var(--space-6); }
+
+    .site-header {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-divider);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-block: var(--space-4); gap: var(--space-4);
+    }
+    .site-logo {
+      display: flex; align-items: center; gap: var(--space-2);
+      text-decoration: none; color: var(--color-text);
+      font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500;
+    }
+    .logo-icon { width: 32px; height: 32px; }
+    .site-nav { display: flex; align-items: center; gap: var(--space-6); }
+    .site-nav a { font-size: var(--text-sm); color: var(--color-text-muted); font-weight: 500; }
+    .site-nav a:hover { color: var(--color-primary); }
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: var(--radius-full);
+      color: var(--color-text-muted);
+      transition: color var(--transition-interactive), background var(--transition-interactive);
+    }
+    .theme-toggle:hover {
+      color: var(--color-text);
+      background: var(--color-surface-offset);
+    }
+
+    .page-hero {
+      padding-block: clamp(var(--space-12), 5vw, var(--space-20));
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .page-hero__label {
+      display: inline-block;
+      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--color-primary);
+      background: var(--color-primary-highlight);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-4);
+    }
+    .page-hero__title {
+      font-size: var(--text-2xl);
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+    }
+    .page-hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      font-family: var(--font-body);
+      font-weight: 400;
+      max-width: 58ch;
+      line-height: 1.6;
+    }
+
+    .prose { padding-block: var(--space-12); }
+    .prose section { margin-bottom: var(--space-12); }
+    .prose h2 {
+      font-size: var(--text-xl);
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .prose h3 {
+      font-size: var(--text-lg);
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+      margin-top: var(--space-6);
+      font-family: var(--font-body);
+      font-weight: 600;
+    }
+    .prose p {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: var(--space-4);
+      max-width: 72ch;
+    }
+    .prose ul, .prose ol {
+      padding-left: var(--space-6);
+      margin-bottom: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .prose li {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+    .prose strong { color: var(--color-text); font-weight: 600; }
+    .prose a {
+      color: var(--color-primary);
+      text-decoration: underline;
+      text-decoration-color: oklch(from var(--color-primary) l c h / 0.3);
+    }
+    .prose a:hover { text-decoration-color: var(--color-primary); }
+
+    .info-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .info-card--highlight {
+      background: var(--color-primary-highlight);
+      border-color: oklch(from var(--color-primary) l c h / 0.2);
+    }
+
+    .mission-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-divider);
+      border-radius: var(--radius-xl);
+      padding: clamp(var(--space-6), 4vw, var(--space-10));
+      margin-bottom: var(--space-8);
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), oklch(from var(--color-primary) 0.75 0.12 192));
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(260px,100%), 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .value-item {
+      background: var(--color-surface-offset);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .value-item h4 {
+      font-size: var(--text-base);
+      font-weight: 700;
+      font-family: var(--font-body);
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .value-item p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-6);
+      margin: var(--space-8) 0;
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--color-divider);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .stat-item__num {
+      font-size: var(--text-xl);
+      font-family: var(--font-display);
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+    .stat-item__label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .site-footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-divider);
+      padding-block: var(--space-8);
+      margin-top: var(--space-20);
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .footer-copy {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .footer-links a {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .footer-links a:hover { color: var(--color-primary); }
+
+    @media (max-width: 640px) {
+      .site-nav a { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .stat-row { gap: var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" aria-label="ConsentForms logo">
+          <rect width="32" height="32" rx="8" fill="var(--color-primary)" />
+          <rect x="8" y="9" width="16" height="2" rx="1" fill="white" />
+          <rect x="8" y="13" width="12" height="2" rx="1" fill="white" opacity="0.7" />
+          <rect x="8" y="17" width="14" height="2" rx="1" fill="white" opacity="0.7" />
+          <circle cx="22" cy="22" r="5" fill="white" />
+          <path d="M19.5 22l1.5 1.5L24 20" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        ConsentForms
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/about-us/">About</a>
+        <a href="/contact-us/">Contact</a>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" />
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+  <section class="page-hero">
+    <div class="container--narrow">
+      <span class="page-hero__label">About Us</span>
+      <h1 class="page-hero__title">Free Consent Forms for Everyone Who Asks Questions</h1>
+      <p class="page-hero__subtitle">ConsentForms was built to make ethical interviewing easy — for researchers, journalists, students, podcasters, UX designers, and anyone who collects information from real people.</p>
+    </div>
+  </section>
+
+  <div class="prose">
+    <div class="container--narrow">
+
+      <section>
+        <div class="mission-card">
+          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4); border:none; padding:0;">Our Mission</h2>
+          <p>We believe that informed consent should never be a barrier. Whether you are a university student conducting dissertation interviews, a journalist speaking to a source, or a UX researcher running usability tests — you deserve professional, legally sound consent forms without paying for expensive software or legal consultations.</p>
+          <p>ConsentForms provides 21 types of free, downloadable interview consent forms in both PDF and Word format. Every template is designed to meet institutional, legal, and ethical standards — including IRB requirements, GDPR guidelines, and standard journalism ethics practices.</p>
+          <div class="stat-row">
+            <div class="stat-item">
+              <span class="stat-item__num">21</span>
+              <span class="stat-item__label">Form Types</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item__num">100%</span>
+              <span class="stat-item__label">Free to Use</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item__num">2</span>
+              <span class="stat-item__label">Formats: PDF &amp; Word</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-item__num">0</span>
+              <span class="stat-item__label">Sign-Ups Required</span>
+            </div>
+          </div>
+          <p>No account. No sign-up. No subscription. Every form is free to fill, download, and use for any purpose — personal, academic, or commercial.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Who We Help</h2>
+        <p>ConsentForms is used by a wide range of professionals and students across the world. Our users include:</p>
+        <div class="value-grid">
+          <div class="value-item">
+            <h4>🎓 Academic Researchers</h4>
+            <p>Graduate students, PhD candidates, and faculty conducting IRB-approved human-subjects research who need compliant informed consent documents.</p>
+          </div>
+          <div class="value-item">
+            <h4>📰 Journalists &amp; Reporters</h4>
+            <p>Print and broadcast journalists, student journalists, and documentary filmmakers who need on-record consent and source release forms.</p>
+          </div>
+          <div class="value-item">
+            <h4>🎙️ Podcasters &amp; Media Creators</h4>
+            <p>Podcast hosts and video producers who need guest release and recording consent before publishing interviews online.</p>
+          </div>
+          <div class="value-item">
+            <h4>🖥️ UX Researchers</h4>
+            <p>Product designers and UX professionals running usability tests and user interviews who need GDPR-compliant session recording consent.</p>
+          </div>
+          <div class="value-item">
+            <h4>📚 Students &amp; Educators</h4>
+            <p>Undergraduate and postgraduate students running dissertation or thesis interviews, and teachers conducting classroom research projects.</p>
+          </div>
+          <div class="value-item">
+            <h4>🏢 Market Researchers</h4>
+            <p>Market research professionals and business analysts conducting focus groups, customer interviews, and qualitative research studies.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>What Makes ConsentForms Different</h2>
+        <p>There are many websites that offer generic consent form templates. ConsentForms is built differently:</p>
+        <ul>
+          <li><strong>Purpose-specific forms:</strong> Every form is designed for a specific interview type — not a one-size-fits-all template that users must heavily customise.</li>
+          <li><strong>IRB-compliant language:</strong> Our research forms meet Institutional Review Board standards used at major universities including Penn State, SNHU, UCL, University of Edinburgh, and UTS.</li>
+          <li><strong>Fill online, download instantly:</strong> Every form includes an online form builder. Users type in their details, see a live preview, and download a completed PDF or Word document in seconds.</li>
+          <li><strong>No paywalls or sign-ups:</strong> Every form on ConsentForms is permanently free. We do not charge for downloads, premium templates, or advanced features.</li>
+          <li><strong>Accessible globally:</strong> Our forms are used in research contexts across the United States, United Kingdom, Australia, Canada, Ireland, South Africa, Malaysia, and many other countries.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Our Commitment to Quality</h2>
+        <p>Every consent form template on ConsentForms is reviewed against relevant academic, legal, and professional standards before publication. We regularly update our templates to reflect changes in IRB requirements, data protection law, and best practices in research ethics.</p>
+        <p>Our guided articles — including our comprehensive guide on how to write an interview consent form — are written to provide genuine educational value, not just SEO filler. We want every visitor to leave ConsentForms with a clearer understanding of ethical interview practice.</p>
+        <div class="info-card info-card--highlight">
+          <h3 style="font-family:var(--font-body); font-size:var(--text-base); font-weight:700; margin-bottom:var(--space-2);">Have a question or feedback?</h3>
+          <p style="margin:0; font-size:var(--text-sm); color:var(--color-text-muted);">We welcome input from researchers, educators, and legal professionals. If you notice an error in a template or have a suggestion to improve our forms, please <a href="/contact-us/">get in touch</a>. We read every message.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Our Values</h2>
+        <div class="value-grid">
+          <div class="value-item">
+            <h4>Accessibility First</h4>
+            <p>Ethical tools should be available to everyone regardless of budget, institution, or background.</p>
+          </div>
+          <div class="value-item">
+            <h4>Accuracy Matters</h4>
+            <p>We take responsibility for the accuracy of our templates and update them when standards change.</p>
+          </div>
+          <div class="value-item">
+            <h4>Privacy by Design</h4>
+            <p>We do not store form content you fill in. Your data is processed locally and never sent to our servers.</p>
+          </div>
+          <div class="value-item">
+            <h4>No Dark Patterns</h4>
+            <p>No fake free trials, surprise paywalls, or deceptive upsells. What you see is what you get — permanently free.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2025 ConsentForms. All rights reserved.</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/">Home</a>
+        <a href="/about-us/">About Us</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <a href="/contact-us/">Contact Us</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  const sun='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  const moon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  if(t){
+    if(d==='dark') t.innerHTML=moon;
+    t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);t.innerHTML=d==='dark'?sun:moon;});
+  }
+})();
+</script>
+</body>
+</html>
