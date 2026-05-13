@@ -10,6 +10,10 @@ jobs:
     permissions:
       contents: write
 
+    env:
+      # Opt‑in to Node 24 so warnings chhup jayen
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
