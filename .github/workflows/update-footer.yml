@@ -1,7 +1,10 @@
-name: Fix Footer Links
+name: Update Footer v2
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'fix_footer.py'
 
 jobs:
   run-script:
@@ -11,7 +14,6 @@ jobs:
       contents: write
 
     env:
-      # Opt‑in to Node 24 so warnings chhup jayen
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
@@ -23,7 +25,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Run footer script
+      - name: Run footer update script
         run: python fix_footer.py
 
       - name: Commit & Push changes
@@ -31,5 +33,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add -A
-          git commit -m "auto: fix footer across pages" || echo "No changes"
+          git commit -m "auto: update footer v2 across all pages" || echo "No changes to commit"
           git push
