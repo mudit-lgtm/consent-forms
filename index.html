@@ -795,6 +795,41 @@
     @media(max-width:900px){.nav-menu{display:none}.hamburger{display:flex}.nav-cta{display:none}}
     @media(max-width:480px){.navbar{padding:0 1rem}.nav-logo{font-size:1rem}}
     /* fix_nav_v2_css_end */
+
+    /* fix_footer_v2_css */
+    .ftv2{background:#020617;color:rgba(255,255,255,.65);padding:4rem 0 0;border-top:1px solid #0f172a;font-size:.88rem}
+    .ftv2-inner{max-width:1220px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;gap:2.5rem;align-items:flex-start}
+    .ftv2-logo{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:#fff;font-size:1rem;font-weight:800;margin-bottom:.85rem}
+    .ftv2-logo-icon{width:32px;height:32px;background:#1d4ed8;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .ftv2-logo-text{line-height:1.2}
+    .ftv2-tagline{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.75;margin:0 0 1.25rem}
+    .ftv2-cta{display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:.5rem 1.1rem;border-radius:6px;transition:background .15s}
+    .ftv2-cta:hover{background:#0f2d6e;color:#fff}
+    .ftv2-col{display:flex;flex-direction:column}
+    .ftv2-col-title{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.12em;margin:0 0 .85rem}
+    .ftv2-col-title--gap{margin-top:1.75rem}
+    .ftv2-col a{font-size:.82rem;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:.42rem;line-height:1.45;transition:color .12s}
+    .ftv2-col a:hover{color:#fff}
+    .ftv2-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:3rem;padding:1.35rem 0 1.5rem}
+    .ftv2-bottom-inner{max-width:1220px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .ftv2-copy{margin:0;font-size:.76rem;color:rgba(255,255,255,.35)}
+    .ftv2-legal{display:flex;flex-wrap:wrap;gap:1.25rem}
+    .ftv2-legal a{font-size:.76rem;color:rgba(255,255,255,.45);text-decoration:none;font-weight:500;transition:color .12s}
+    .ftv2-legal a:hover{color:#fff}
+    @media(max-width:1100px){
+      .ftv2-inner{grid-template-columns:1fr 1fr 1fr;gap:2rem}
+      .ftv2-brand{grid-column:1/-1}
+    }
+    @media(max-width:700px){
+      .ftv2-inner{grid-template-columns:1fr 1fr;gap:1.5rem 2rem}
+      .ftv2-brand{grid-column:1/-1}
+    }
+    @media(max-width:480px){
+      .ftv2-inner{grid-template-columns:1fr;padding:0 1rem}
+      .ftv2-bottom-inner{flex-direction:column;align-items:flex-start;padding:0 1rem}
+      .ftv2-legal{gap:.85rem}
+    }
+    /* fix_footer_v2_css_end */
 </style>
 </head>
 
@@ -1579,71 +1614,84 @@
   <!-- ═══════════════════════════════════════════════════════
        FOOTER
   ═══════════════════════════════════════════════════════ -->
-  <footer role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
+    <footer class="ftv2" data-footer-version="fix_footer_v2" role="contentinfo">
+    <div class="ftv2-inner">
 
-        <div>
-          <div class="footer-brand-name">
-            <span aria-hidden="true">📋</span>
-            InterviewConsentForms
-          </div>
-          <p class="footer-desc">Free interview consent form templates for researchers, journalists, students, UX designers, podcasters, and academics. Create, fill, and download in PDF or Word — no account needed.</p>
-        </div>
-
-        <nav aria-label="Research forms footer links">
-          <h4>Research</h4>
-          <ul>
-            <li><a href="/interview-consent-form-for-research/">Research Interview Consent Form</a></li>
-            <li><a href="/informed-interview-consent-form/">Informed Interview Consent Form</a></li>
-            <li><a href="/irb-interview-consent-form/">IRB Interview Consent Form</a></li>
-            <li><a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a></li>
-            <li><a href="/focus-group-interview-consent-form/">Focus Group Interview Consent Form</a></li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Academic forms footer links">
-          <h4>Academic</h4>
-          <ul>
-            <li><a href="/dissertation-interview-consent-form/">Dissertation Interview Consent Form</a></li>
-            <li><a href="/student-interview-consent-form/">Student Interview Consent Form</a></li>
-            <li><a href="/participant-interview-consent-form/">Participant Interview Consent Form</a></li>
-          </ul>
-          <h4 style="margin-top:1.5rem">Media &amp; Press</h4>
-          <ul>
-            <li><a href="/journalism-interview-consent-form/">Journalism Interview Consent Form</a></li>
-            <li><a href="/podcast-interview-consent-form/">Podcast Interview Consent Form</a></li>
-            <li><a href="/media-interview-consent-form/">Media Interview Consent Form</a></li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Online forms footer links">
-          <h4>Online &amp; Remote</h4>
-          <ul>
-            <li><a href="/online-interview-consent-form/">Online Interview Consent Form</a></li>
-            <li><a href="/video-interview-consent-form/">Video Interview Consent Form</a></li>
-            <li><a href="/recording-interview-consent-form/">Recording Interview Consent Form</a></li>
-            <li><a href="/ux-interview-consent-form/">UX Interview Consent Form</a></li>
-          </ul>
-        </nav>
-
-        <nav aria-label="Resources footer links">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="/interview-consent-form/">Create Interview Consent Form</a></li>
-            <li><a href="/interview-consent-form-template/">Interview Consent Form Template</a></li>
-            <li><a href="/interview-consent-form-sample/">Samples &amp; Examples</a></li>
-            <li><a href="/simple-interview-consent-form/">Simple Interview Consent Form</a></li>
-            <li><a href="/how-to-write-an-interview-consent-form/">How to Write a Consent Form</a></li>
-            <li><a href="/what-is-an-interview-consent-form/">What Is an Interview Consent Form?</a></li>
-          </ul>
-        </nav>
-
+      <!-- Brand -->
+      <div class="ftv2-brand">
+        <a href="/" class="ftv2-logo" aria-label="InterviewConsentForms Home">
+          <span class="ftv2-logo-icon" aria-hidden="true">&#128203;</span>
+          <span class="ftv2-logo-text">InterviewConsentForms</span>
+        </a>
+        <p class="ftv2-tagline">
+          Free interview consent form templates for researchers, journalists, students,
+          UX designers, podcasters, and academics. Create, fill, and download in PDF or
+          Word &mdash; no account needed.
+        </p>
+        <a href="/interview-consent-form/" class="ftv2-cta">Create Form Free &rarr;</a>
       </div>
 
-      <div class="footer-bottom">
-        <p>© 2026 InterviewConsentForms. Templates are provided for informational purposes only and do not constitute legal advice.</p>
-        <div class="footer-legal-links">
+      <!-- Col 1: Research -->
+      <nav class="ftv2-col" aria-label="Research forms">
+        <h4 class="ftv2-col-title">Research</h4>
+        <a href="/interview-consent-form-for-research/">Research Interview Consent Form</a>
+        <a href="/informed-interview-consent-form/">Informed Interview Consent Form</a>
+        <a href="/irb-interview-consent-form/">IRB Interview Consent Form</a>
+        <a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a>
+        <a href="/focus-group-interview-consent-form/">Focus Group Interview Consent Form</a>
+        <a href="/interview-consent-form/">Interview Consent Form</a>
+      </nav>
+
+      <!-- Col 2: Academic -->
+      <nav class="ftv2-col" aria-label="Academic forms">
+        <h4 class="ftv2-col-title">Academic</h4>
+        <a href="/dissertation-interview-consent-form/">Dissertation Consent Form</a>
+        <a href="/student-interview-consent-form/">Student Interview Consent Form</a>
+        <a href="/participant-interview-consent-form/">Participant Interview Consent Form</a>
+        <a href="/simple-interview-consent-form/">Simple Interview Consent Form</a>
+        <a href="/interview-consent-form-template/">Interview Consent Form Template</a>
+        <a href="/interview-consent-form-sample/">Interview Consent Form Sample</a>
+      </nav>
+
+      <!-- Col 3: Media & Online -->
+      <nav class="ftv2-col" aria-label="Media and online forms">
+        <h4 class="ftv2-col-title">Media &amp; Online</h4>
+        <a href="/journalism-interview-consent-form/">Journalism Consent Form</a>
+        <a href="/podcast-interview-consent-form/">Podcast Interview Consent Form</a>
+        <a href="/media-interview-consent-form/">Media Interview Consent Form</a>
+        <a href="/online-interview-consent-form/">Online Interview Consent Form</a>
+        <a href="/video-interview-consent-form/">Video Interview Consent Form</a>
+        <a href="/recording-interview-consent-form/">Recording Consent Form</a>
+        <a href="/ux-interview-consent-form/">UX Interview Consent Form</a>
+      </nav>
+
+      <!-- Col 4: Resources + Company -->
+      <nav class="ftv2-col" aria-label="Resources and company links">
+        <h4 class="ftv2-col-title">Resources</h4>
+        <a href="/how-to-write-an-interview-consent-form/">How to Write a Consent Form</a>
+        <a href="/what-is-an-interview-consent-form/">What Is an Interview Consent Form?</a>
+        <a href="/interview-consent-form-template/">Free Template (PDF &amp; Word)</a>
+
+        <h4 class="ftv2-col-title ftv2-col-title--gap">Company</h4>
+        <a href="/about-us/">About Us</a>
+        <a href="/contact-us/">Contact Us</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </nav>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="ftv2-bottom">
+      <div class="ftv2-bottom-inner">
+        <p class="ftv2-copy">
+          &copy; 2026 InterviewConsentForms &mdash; Templates are for informational purposes only and do not constitute legal advice.
+        </p>
+        <div class="ftv2-legal" aria-label="Legal links">
+          <a href="/about-us/">About</a>
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms-and-conditions/">Terms</a>
+          <a href="/contact-us/">Contact</a>
           <a href="/sitemap.xml">Sitemap</a>
           <a href="/robots.txt">Robots.txt</a>
         </div>
