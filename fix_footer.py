@@ -1,355 +1,279 @@
 #!/usr/bin/env python3
 """
-fix_footer.py
-=============
-- Har index.html me <footer>...</footer> ko ek canonical footer se replace karta hai.
-- Canonical footer me:
-    - Existing multi-column design (brand + categories)
-    - Niche bottom row: About Us, Privacy Policy, Terms, Contact, Sitemap, Robots.txt
-- Idempotent: data-footer-version="fix_footer_v1" sentinel ke basis par repeat run safe hai.
+fix_footer.py  v2
+=================
+Replaces <footer>...</footer> in every index.html with a
+fully updated canonical footer that includes:
+  - All 21 consent form pages linked
+  - Policy pages: About Us, Privacy Policy, Terms, Contact Us
+  - Desktop 5-col grid, 3-col tablet, 2-col small tablet, 1-col mobile
+  - Inline CSS auto-injected into existing <style> tag
+  - Idempotent: data-footer-version="fix_footer_v2" sentinel
 
-HOW TO RUN (locally):
-  python fix_footer.py          # ya GitHub Actions workflow se run karein
+USAGE:
+  python fix_footer.py              # update all index.html files
+  python fix_footer.py --dry-run    # preview only, no writes
+  python fix_footer.py --root ./src # custom root directory
 """
 
-import os
-import re
-import argparse
-import sys
+import os, re, argparse, sys
 
-FOOTER_SENTINEL = 'data-footer-version="fix_footer_v1"'
+FOOTER_SENTINEL  = 'data-footer-version="fix_footer_v2"'
+CSS_SENTINEL     = "/* fix_footer_v2_css */"
+CSS_SENTINEL_END = "/* fix_footer_v2_css_end */"
 
+# ── Canonical Footer HTML ────────────────────────────────────
+CANONICAL_FOOTER = """\
+  <footer class="ftv2" data-footer-version="fix_footer_v2" role="contentinfo">
+    <div class="ftv2-inner">
 
-CANONICAL_FOOTER = '''  <footer class="footer" ''' + FOOTER_SENTINEL + '''>
-    <div class="footer-inner container">
-
-      <!-- Left brand/description column -->
-      <div class="footer-brand">
-        <a href="/" class="footer-logo">
-          <span class="footer-logo-icon" aria-hidden="true">📋</span>
-          <span class="footer-logo-text">InterviewConsentForms</span>
+      <!-- Brand -->
+      <div class="ftv2-brand">
+        <a href="/" class="ftv2-logo" aria-label="InterviewConsentForms Home">
+          <span class="ftv2-logo-icon" aria-hidden="true">&#128203;</span>
+          <span class="ftv2-logo-text">InterviewConsentForms</span>
         </a>
-        <p class="footer-tagline">
-          Free interview consent form templates for researchers, journalists, students, UX designers, podcasters, and
-          academics. Create, fill, and download in PDF or Word — no account needed.
+        <p class="ftv2-tagline">
+          Free interview consent form templates for researchers, journalists, students,
+          UX designers, podcasters, and academics. Create, fill, and download in PDF or
+          Word &mdash; no account needed.
         </p>
+        <a href="/interview-consent-form/" class="ftv2-cta">Create Form Free &rarr;</a>
       </div>
 
-      <!-- Link columns -->
-      <div class="footer-columns" aria-label="Footer navigation">
-        <div class="footer-column">
-          <h3 class="footer-column-title">Research</h3>
-          <a href="/interview-consent-form-for-research/">Research Interview Consent Form</a>
-          <a href="/consent-form-for-interview/">Consent Form for Interview</a>
-          <a href="/informed-interview-consent-form/">Informed Interview Consent Form</a>
-          <a href="/irb-interview-consent-form/">IRB Interview Consent Form</a>
-          <a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a>
-          <a href="/focus-group-interview-consent-form/">Focus Group Interview Consent Form</a>
-        </div>
+      <!-- Col 1: Research -->
+      <nav class="ftv2-col" aria-label="Research forms">
+        <h4 class="ftv2-col-title">Research</h4>
+        <a href="/interview-consent-form-for-research/">Research Interview Consent Form</a>
+        <a href="/informed-interview-consent-form/">Informed Interview Consent Form</a>
+        <a href="/irb-interview-consent-form/">IRB Interview Consent Form</a>
+        <a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a>
+        <a href="/focus-group-interview-consent-form/">Focus Group Interview Consent Form</a>
+        <a href="/interview-consent-form/">Interview Consent Form</a>
+      </nav>
 
-        <div class="footer-column">
-          <h3 class="footer-column-title">Academic</h3>
-          <a href="/dissertation-interview-consent-form/">Dissertation Interview Consent Form</a>
-          <a href="/student-interview-consent-form/">Student Interview Consent Form</a>
-          <a href="/participant-interview-consent-form/">Participant Interview Consent Form</a>
+      <!-- Col 2: Academic -->
+      <nav class="ftv2-col" aria-label="Academic forms">
+        <h4 class="ftv2-col-title">Academic</h4>
+        <a href="/dissertation-interview-consent-form/">Dissertation Consent Form</a>
+        <a href="/student-interview-consent-form/">Student Interview Consent Form</a>
+        <a href="/participant-interview-consent-form/">Participant Interview Consent Form</a>
+        <a href="/simple-interview-consent-form/">Simple Interview Consent Form</a>
+        <a href="/interview-consent-form-template/">Interview Consent Form Template</a>
+        <a href="/interview-consent-form-sample/">Interview Consent Form Sample</a>
+      </nav>
 
-          <h3 class="footer-column-title footer-column-title--spaced">Media &amp; Press</h3>
-          <a href="/journalism-interview-consent-form/">Journalism Interview Consent Form</a>
-          <a href="/podcast-interview-consent-form/">Podcast Interview Consent Form</a>
-          <a href="/media-interview-consent-form/">Media Interview Consent Form</a>
-        </div>
+      <!-- Col 3: Media & Online -->
+      <nav class="ftv2-col" aria-label="Media and online forms">
+        <h4 class="ftv2-col-title">Media &amp; Online</h4>
+        <a href="/journalism-interview-consent-form/">Journalism Consent Form</a>
+        <a href="/podcast-interview-consent-form/">Podcast Interview Consent Form</a>
+        <a href="/media-interview-consent-form/">Media Interview Consent Form</a>
+        <a href="/online-interview-consent-form/">Online Interview Consent Form</a>
+        <a href="/video-interview-consent-form/">Video Interview Consent Form</a>
+        <a href="/recording-interview-consent-form/">Recording Consent Form</a>
+        <a href="/ux-interview-consent-form/">UX Interview Consent Form</a>
+      </nav>
 
-        <div class="footer-column">
-          <h3 class="footer-column-title">Online &amp; Remote</h3>
-          <a href="/online-interview-consent-form/">Online Interview Consent Form</a>
-          <a href="/video-interview-consent-form/">Video Interview Consent Form</a>
-          <a href="/recording-interview-consent-form/">Recording Interview Consent Form</a>
-          <a href="/ux-interview-consent-form/">UX Interview Consent Form</a>
-        </div>
+      <!-- Col 4: Resources + Company -->
+      <nav class="ftv2-col" aria-label="Resources and company links">
+        <h4 class="ftv2-col-title">Resources</h4>
+        <a href="/how-to-write-an-interview-consent-form/">How to Write a Consent Form</a>
+        <a href="/what-is-an-interview-consent-form/">What Is an Interview Consent Form?</a>
+        <a href="/interview-consent-form-template/">Free Template (PDF &amp; Word)</a>
 
-        <div class="footer-column">
-          <h3 class="footer-column-title">Resources</h3>
-          <a href="/create-interview-consent-form/">Create Interview Consent Form</a>
-          <a href="/interview-consent-form-template/">Interview Consent Form Template</a>
-          <a href="/interview-consent-form-sample/">Samples &amp; Examples</a>
-          <a href="/simple-interview-consent-form/">Simple Interview Consent Form</a>
-          <a href="/how-to-write-an-interview-consent-form/">How to Write a Consent Form</a>
-          <a href="/what-is-an-interview-consent-form/">What Is an Interview Consent Form?</a>
-        </div>
-      </div>
+        <h4 class="ftv2-col-title ftv2-col-title--gap">Company</h4>
+        <a href="/about-us/">About Us</a>
+        <a href="/contact-us/">Contact Us</a>
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+      </nav>
+
     </div>
 
-    <!-- Bottom legal + utility row -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-inner container">
-        <p class="footer-bottom-text">
-          © 2026 InterviewConsentForms. Templates are provided for informational purposes only and do not constitute legal advice.
+    <!-- Bottom bar -->
+    <div class="ftv2-bottom">
+      <div class="ftv2-bottom-inner">
+        <p class="ftv2-copy">
+          &copy; 2026 InterviewConsentForms &mdash; Templates are for informational purposes only and do not constitute legal advice.
         </p>
-        <div class="footer-bottom-links">
-          <a href="/about-us/">About Us</a>
+        <div class="ftv2-legal" aria-label="Legal links">
+          <a href="/about-us/">About</a>
           <a href="/privacy-policy/">Privacy Policy</a>
-          <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-          <a href="/contact-us/">Contact Us</a>
+          <a href="/terms-and-conditions/">Terms</a>
+          <a href="/contact-us/">Contact</a>
           <a href="/sitemap.xml">Sitemap</a>
           <a href="/robots.txt">Robots.txt</a>
         </div>
       </div>
     </div>
-  </footer>'''
+  </footer>"""
+
+# ── Footer CSS ───────────────────────────────────────────────
+FOOTER_CSS = """\
+    /* fix_footer_v2_css */
+    .ftv2{background:#020617;color:rgba(255,255,255,.65);padding:4rem 0 0;border-top:1px solid #0f172a;font-size:.88rem}
+    .ftv2-inner{max-width:1220px;margin:0 auto;padding:0 1.5rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1.2fr;gap:2.5rem;align-items:flex-start}
+    .ftv2-logo{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:#fff;font-size:1rem;font-weight:800;margin-bottom:.85rem}
+    .ftv2-logo-icon{width:32px;height:32px;background:#1d4ed8;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .ftv2-logo-text{line-height:1.2}
+    .ftv2-tagline{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.75;margin:0 0 1.25rem}
+    .ftv2-cta{display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;font-size:.82rem;font-weight:700;padding:.5rem 1.1rem;border-radius:6px;transition:background .15s}
+    .ftv2-cta:hover{background:#0f2d6e;color:#fff}
+    .ftv2-col{display:flex;flex-direction:column}
+    .ftv2-col-title{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.12em;margin:0 0 .85rem}
+    .ftv2-col-title--gap{margin-top:1.75rem}
+    .ftv2-col a{font-size:.82rem;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:.42rem;line-height:1.45;transition:color .12s}
+    .ftv2-col a:hover{color:#fff}
+    .ftv2-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:3rem;padding:1.35rem 0 1.5rem}
+    .ftv2-bottom-inner{max-width:1220px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .ftv2-copy{margin:0;font-size:.76rem;color:rgba(255,255,255,.35)}
+    .ftv2-legal{display:flex;flex-wrap:wrap;gap:1.25rem}
+    .ftv2-legal a{font-size:.76rem;color:rgba(255,255,255,.45);text-decoration:none;font-weight:500;transition:color .12s}
+    .ftv2-legal a:hover{color:#fff}
+    @media(max-width:1100px){
+      .ftv2-inner{grid-template-columns:1fr 1fr 1fr;gap:2rem}
+      .ftv2-brand{grid-column:1/-1}
+    }
+    @media(max-width:700px){
+      .ftv2-inner{grid-template-columns:1fr 1fr;gap:1.5rem 2rem}
+      .ftv2-brand{grid-column:1/-1}
+    }
+    @media(max-width:480px){
+      .ftv2-inner{grid-template-columns:1fr;padding:0 1rem}
+      .ftv2-bottom-inner{flex-direction:column;align-items:flex-start;padding:0 1rem}
+      .ftv2-legal{gap:.85rem}
+    }
+    /* fix_footer_v2_css_end */"""
 
 
-FOOTER_CSS_SENTINEL = '/* fix_footer_v1_css */'
-FOOTER_CSS = '''
-    ''' + FOOTER_CSS_SENTINEL + '''
-    .footer {
-      background: #020617;
-      color: #e5e7eb;
-      padding-block: 3rem 2rem;
-      border-top: 1px solid #0f172a;
-      font-size: 0.9rem;
-    }
-    .footer-inner {
-      display: flex;
-      gap: 3rem;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-    .footer-brand {
-      max-width: 280px;
-    }
-    .footer-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: #f9fafb;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-    .footer-logo-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1d4ed8;
-      font-size: 1.1rem;
-    }
-    .footer-logo-text {
-      font-size: 1rem;
-    }
-    .footer-tagline {
-      margin: 0;
-      color: #9ca3af;
-      line-height: 1.7;
-    }
-    .footer-columns {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 2.5rem;
-      flex: 1;
-    }
-    .footer-column-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #9ca3af;
-      margin-bottom: 1rem;
-    }
-    .footer-column-title--spaced {
-      margin-top: 1.75rem;
-    }
-    .footer-column a {
-      display: block;
-      font-size: 0.86rem;
-      color: #e5e7eb;
-      text-decoration: none;
-      margin-bottom: 0.35rem;
-    }
-    .footer-column a:hover {
-      color: #f9fafb;
-    }
-    .footer-bottom {
-      border-top: 1px solid #111827;
-      margin-top: 2.5rem;
-      padding-top: 1.25rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-    }
-    .footer-bottom-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-    .footer-bottom-text {
-      margin: 0;
-    }
-    .footer-bottom-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-    }
-    .footer-bottom-links a {
-      color: inherit;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .footer-bottom-links a:hover {
-      color: #e5e7eb;
-    }
-    @media (max-width: 960px) {
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-columns {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 640px) {
-      .footer-columns {
-        grid-template-columns: 1fr;
-      }
-      .footer-bottom-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-    /* fix_footer_v1_css_end */
-'''
+# ── Helpers ──────────────────────────────────────────────────
 
-
-def find_html_files(root: str):
+def find_html_files(root):
     files = []
-    for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = [d for d in dirnames if not d.startswith('.') and d not in ('node_modules', '__pycache__')]
-        for fname in filenames:
-            if fname == 'index.html':
-                files.append(os.path.join(dirpath, fname))
+    for dp, dns, fns in os.walk(root):
+        dns[:] = [d for d in dns if not d.startswith('.')
+                  and d not in ('node_modules', '__pycache__', '.git')]
+        for fn in fns:
+            if fn == 'index.html':
+                files.append(os.path.join(dp, fn))
     return sorted(files)
 
 
-def replace_footer_block(html: str):
-    m_start = re.search(r'<footer\\b[^>]*>', html, flags=re.IGNORECASE)
-    if not m_start:
+def replace_footer_block(html):
+    """Find <footer>...</footer> and replace with CANONICAL_FOOTER."""
+    m = re.search(r'<footer\b[^>]*>', html, re.IGNORECASE)
+    if not m:
         return html, 'no-footer'
-
-    start = m_start.start()
-    search = m_start.end()
-    depth = 1
-    end = search
-
+    start  = m.start()
+    search = m.end()
+    depth  = 1
+    end    = search
     while depth > 0:
-        nopen = html.lower().find('<footer', search)
+        nopen  = html.lower().find('<footer', search)
         nclose = html.lower().find('</footer>', search)
         if nclose == -1:
             return html, 'unclosed'
         if nopen != -1 and nopen < nclose:
-            depth += 1
-            search = nopen + 7
+            depth  += 1
+            search  = nopen + 7
         else:
             depth -= 1
-            end = nclose + len('</footer>')
+            end    = nclose + len('</footer>')
             search = end
-
-    new_html = html[:start] + CANONICAL_FOOTER + html[end:]
-    return new_html, 'replaced'
+    return html[:start] + CANONICAL_FOOTER + html[end:], 'replaced'
 
 
-def ensure_footer_css(html: str):
-    # remove old footer-css block if exists
+def ensure_footer_css(html):
+    """Remove old footer CSS block (v1 or v2) then inject fresh CSS."""
     html = re.sub(
-        r'/\\* fix_footer_v1_css \\*/.*?/\\* fix_footer_v1_css_end \\*/',
-        '',
-        html,
-        flags=re.DOTALL
+        r'/\* fix_footer_v[12]_css \*/.*?/\* fix_footer_v[12]_css_end \*/',
+        '', html, flags=re.DOTALL
     )
     pos = html.find('</style>')
     if pos == -1:
-        # if no style tag, inject before </head>
         pos = html.find('</head>')
         if pos == -1:
             return html
-        html = html[:pos] + '<style>' + FOOTER_CSS + '</style>\n' + html[pos:]
+        html = html[:pos] + '<style>\n' + FOOTER_CSS + '\n</style>\n' + html[pos:]
     else:
-        html = html[:pos] + FOOTER_CSS + html[pos:]
+        html = html[:pos] + '\n' + FOOTER_CSS + '\n' + html[pos:]
     return html
 
 
-def process_file(path: str, dry: bool = False):
+def process_file(path, dry=False):
     try:
         with open(path, 'r', encoding='utf-8') as f:
             original = f.read()
     except Exception as e:
-        print(f'  [ERROR] Cannot read {path}: {e}')
+        print(f'  [ERROR] read  {os.path.relpath(path)}: {e}')
         return 'error'
 
-    if FOOTER_SENTINEL in original and FOOTER_CSS_SENTINEL in original:
-        print(f'  [SKIP]  Already up to date: {os.path.relpath(path)}')
+    if FOOTER_SENTINEL in original and CSS_SENTINEL in original:
+        print(f'  [SKIP]  {os.path.relpath(path)}')
         return 'skip'
 
     html = ensure_footer_css(original)
     html, status = replace_footer_block(html)
 
     if status == 'no-footer':
-        print(f'  [WARN]  No <footer> found: {os.path.relpath(path)}')
+        print(f'  [WARN]  no <footer> found   — {os.path.relpath(path)}')
         return 'warn'
     if status == 'unclosed':
-        print(f'  [WARN]  Unclosed <footer> tag: {os.path.relpath(path)}')
+        print(f'  [WARN]  unclosed <footer>   — {os.path.relpath(path)}')
         return 'warn'
 
     if dry:
-        print(f'  [DRY]   Would update: {os.path.relpath(path)}')
+        print(f'  [DRY]   would update        — {os.path.relpath(path)}')
         return 'dry'
 
     try:
         with open(path, 'w', encoding='utf-8') as f:
             f.write(html)
-        print(f'  [DONE]  Updated: {os.path.relpath(path)}')
+        print(f'  [DONE]  updated             — {os.path.relpath(path)}')
         return 'done'
     except Exception as e:
-        print(f'  [ERROR] Cannot write {path}: {e}')
+        print(f'  [ERROR] write {os.path.relpath(path)}: {e}')
         return 'error'
 
 
+# ── Main ──────────────────────────────────────────────────────
+
 def main():
-    parser = argparse.ArgumentParser(description='Replace footer across all index.html files.')
-    parser.add_argument('--root', default='.', help='Repo root (default: .)')
-    parser.add_argument('--dry-run', action='store_true', help='Preview changes only')
+    parser = argparse.ArgumentParser(
+        description='Replace <footer> in all index.html files with canonical footer v2.')
+    parser.add_argument('--root',    default='.',   help='Repo root (default: .)')
+    parser.add_argument('--dry-run', action='store_true', help='Preview only, no file writes')
     args = parser.parse_args()
 
     root = os.path.abspath(args.root)
     if not os.path.isdir(root):
-        print(f'ERROR: {root} is not a directory.')
-        sys.exit(1)
+        print(f'ERROR: {root} is not a directory.'); sys.exit(1)
 
     mode = 'DRY RUN' if args.dry_run else 'LIVE'
-    print(f'\nfix_footer.py [{mode}]')
-    print(f'Root: {root}')
-    print('------------------------------------------------------------')
+    print(f'\nfix_footer.py  v2  [{mode}]')
+    print(f'Root : {root}')
+    print('─' * 62)
 
     files = find_html_files(root)
     if not files:
-        print('No index.html files found.')
-        sys.exit(0)
+        print('No index.html files found.'); sys.exit(0)
 
-    stats = {'done':0,'skip':0,'dry':0,'warn':0,'error':0}
+    stats = dict(done=0, skip=0, dry=0, warn=0, error=0)
     for path in files:
-        result = process_file(path, dry=args.dry_run)
-        stats[result] = stats.get(result, 0) + 1
+        r = process_file(path, dry=args.dry_run)
+        stats[r] = stats.get(r, 0) + 1
 
-    print('------------------------------------------------------------')
+    print('─' * 62)
     if args.dry_run:
         print(f"Would update : {stats['dry']}")
         print(f"Already good : {stats['skip']}")
         print(f"Warnings     : {stats['warn']}\n")
     else:
-        print(f"Updated      : {stats['done']}")
-        print(f"Skipped      : {stats['skip']}")
-        print(f"Warnings     : {stats['warn']}")
-        print(f"Errors       : {stats['error']}\n")
+        print(f"Updated  : {stats['done']}")
+        print(f"Skipped  : {stats['skip']}")
+        print(f"Warnings : {stats['warn']}")
+        print(f"Errors   : {stats['error']}\n")
 
 
 if __name__ == '__main__':
