@@ -1,488 +1,422 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us — ConsentForms | Free Interview Consent Forms</title>
-  <meta name="description" content="Learn about ConsentForms — a free platform for researchers, journalists, students, and UX professionals to create, fill, and download interview consent forms instantly.">
+  <meta name="description" content="Learn about InterviewConsentForms — a free resource providing 21 professionally designed interview consent form templates for researchers, journalists, students, and UX professionals.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://consentforms.vercel.app/about-us/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://consentforms.vercel.app/about-us/">
+  <meta property="og:title" content="About Us — ConsentForms | Free Interview Consent Forms">
+  <meta property="og:description" content="Learn about InterviewConsentForms — a free resource providing 21 professionally designed interview consent form templates.">
+  <meta property="og:image" content="https://consentforms.vercel.app/assets/og/og-homepage.png">
+  <meta property="og:site_name" content="InterviewConsentForms">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://consentforms.vercel.app/about-us/#webpage",
+    "url": "https://consentforms.vercel.app/about-us/",
+    "name": "About Us — InterviewConsentForms",
+    "description": "Learn about InterviewConsentForms — a free resource providing professionally designed interview consent form templates.",
+    "inLanguage": "en-US",
+    "isPartOf": {"@id": "https://consentforms.vercel.app/#website"},
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://consentforms.vercel.app/"},
+        {"@type": "ListItem", "position": 2, "name": "About Us", "item": "https://consentforms.vercel.app/about-us/"}
+      ]
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <style>
-    :root {
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'Work Sans', 'Helvetica Neue', sans-serif;
-
-      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
-      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
-      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
-      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
-      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
-      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
-
-      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
-      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
-      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
-
-      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
-      --radius-xl: 1rem; --radius-full: 9999px;
-      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
-
-      --content-narrow: 640px; --content-default: 860px; --content-wide: 1100px;
-
-      --color-bg: #f7f6f2; --color-surface: #f9f8f5; --color-surface-2: #fbfbf9;
-      --color-surface-offset: #f3f0ec; --color-border: #d4d1ca; --color-divider: #dcd9d5;
-      --color-text: #28251d; --color-text-muted: #7a7974; --color-text-faint: #bab9b4;
-      --color-primary: #01696f; --color-primary-hover: #0c4e54; --color-primary-active: #0f3638;
-      --color-primary-highlight: #cedcd8;
-      --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
-      --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
-    }
-    [data-theme="dark"] {
-      --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
-      --color-surface-offset: #1d1c1a; --color-border: #393836; --color-divider: #262523;
-      --color-text: #cdccca; --color-text-muted: #797876; --color-text-faint: #5a5957;
-      --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
-      --color-primary-highlight: #313b3b;
-      --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
-      --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme]) {
-        --color-bg: #171614; --color-surface: #1c1b19; --color-surface-2: #201f1d;
-        --color-surface-offset: #1d1c1a; --color-border: #393836; --color-divider: #262523;
-        --color-text: #cdccca; --color-text-muted: #797876; --color-text-faint: #5a5957;
-        --color-primary: #4f98a3; --color-primary-hover: #227f8b; --color-primary-active: #1a626b;
-        --color-primary-highlight: #313b3b;
-        --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
-        --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
-      }
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: var(--space-16); }
-    body {
-      min-height: 100dvh;
-      line-height: 1.7;
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--color-text);
-      background-color: var(--color-bg);
-    }
-    img, picture, svg { display: block; max-width: 100%; height: auto; }
-    input, button, textarea, select { font: inherit; color: inherit; }
-    h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.2; font-family: var(--font-display); }
-    p, li { text-wrap: pretty; }
-    button { cursor: pointer; background: none; border: none; }
-    a { color: var(--color-primary); text-decoration: none; transition: color var(--transition-interactive); }
-    a:hover { color: var(--color-primary-hover); }
-    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    .container { max-width: var(--content-default); margin-inline: auto; padding-inline: var(--space-6); }
-    .container--narrow { max-width: var(--content-narrow); margin-inline: auto; padding-inline: var(--space-6); }
-
-    .site-header {
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-divider);
-      position: sticky; top: 0; z-index: 100;
-      box-shadow: var(--shadow-sm);
-    }
-    .header-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-block: var(--space-4); gap: var(--space-4);
-    }
-    .site-logo {
-      display: flex; align-items: center; gap: var(--space-2);
-      text-decoration: none; color: var(--color-text);
-      font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500;
-    }
-    .logo-icon { width: 32px; height: 32px; }
-    .site-nav { display: flex; align-items: center; gap: var(--space-6); }
-    .site-nav a { font-size: var(--text-sm); color: var(--color-text-muted); font-weight: 500; }
-    .site-nav a:hover { color: var(--color-primary); }
-    .theme-toggle {
-      display: flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: var(--radius-full);
-      color: var(--color-text-muted);
-      transition: color var(--transition-interactive), background var(--transition-interactive);
-    }
-    .theme-toggle:hover {
-      color: var(--color-text);
-      background: var(--color-surface-offset);
-    }
-
-    .page-hero {
-      padding-block: clamp(var(--space-12), 5vw, var(--space-20));
-      border-bottom: 1px solid var(--color-divider);
-    }
-    .page-hero__label {
-      display: inline-block;
-      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--color-primary);
-      background: var(--color-primary-highlight);
-      padding: var(--space-1) var(--space-3);
-      border-radius: var(--radius-full);
-      margin-bottom: var(--space-4);
-    }
-    .page-hero__title {
-      font-size: var(--text-2xl);
-      color: var(--color-text);
-      margin-bottom: var(--space-4);
-    }
-    .page-hero__subtitle {
-      font-size: var(--text-lg);
-      color: var(--color-text-muted);
-      font-family: var(--font-body);
-      font-weight: 400;
-      max-width: 58ch;
-      line-height: 1.6;
-    }
-
-    .prose { padding-block: var(--space-12); }
-    .prose section { margin-bottom: var(--space-12); }
-    .prose h2 {
-      font-size: var(--text-xl);
-      color: var(--color-text);
-      margin-bottom: var(--space-4);
-      padding-bottom: var(--space-3);
-      border-bottom: 1px solid var(--color-divider);
-    }
-    .prose h3 {
-      font-size: var(--text-lg);
-      color: var(--color-text);
-      margin-bottom: var(--space-3);
-      margin-top: var(--space-6);
-      font-family: var(--font-body);
-      font-weight: 600;
-    }
-    .prose p {
-      font-size: var(--text-base);
-      color: var(--color-text-muted);
-      line-height: 1.8;
-      margin-bottom: var(--space-4);
-      max-width: 72ch;
-    }
-    .prose ul, .prose ol {
-      padding-left: var(--space-6);
-      margin-bottom: var(--space-4);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-    .prose li {
-      font-size: var(--text-base);
-      color: var(--color-text-muted);
-      line-height: 1.7;
-    }
-    .prose strong { color: var(--color-text); font-weight: 600; }
-    .prose a {
-      color: var(--color-primary);
-      text-decoration: underline;
-      text-decoration-color: oklch(from var(--color-primary) l c h / 0.3);
-    }
-    .prose a:hover { text-decoration-color: var(--color-primary); }
-
-    .info-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-divider);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-      margin-bottom: var(--space-6);
-    }
-    .info-card--highlight {
-      background: var(--color-primary-highlight);
-      border-color: oklch(from var(--color-primary) l c h / 0.2);
-    }
-
-    .mission-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-divider);
-      border-radius: var(--radius-xl);
-      padding: clamp(var(--space-6), 4vw, var(--space-10));
-      margin-bottom: var(--space-8);
-      position: relative;
-      overflow: hidden;
-    }
-    .mission-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), oklch(from var(--color-primary) 0.75 0.12 192));
-    }
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(260px,100%), 1fr));
-      gap: var(--space-4);
-      margin-top: var(--space-6);
-    }
-    .value-item {
-      background: var(--color-surface-offset);
-      border-radius: var(--radius-lg);
-      padding: var(--space-5);
-    }
-    .value-item h4 {
-      font-size: var(--text-base);
-      font-weight: 700;
-      font-family: var(--font-body);
-      color: var(--color-text);
-      margin-bottom: var(--space-2);
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-    .value-item p {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    .stat-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-6);
-      margin: var(--space-8) 0;
-      padding: var(--space-6) 0;
-      border-top: 1px solid var(--color-divider);
-      border-bottom: 1px solid var(--color-divider);
-    }
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-1);
-    }
-    .stat-item__num {
-      font-size: var(--text-xl);
-      font-family: var(--font-display);
-      color: var(--color-primary);
-      font-weight: 500;
-    }
-    .stat-item__label {
-      font-size: var(--text-xs);
-      color: var(--color-text-muted);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .site-footer {
-      background: var(--color-surface);
-      border-top: 1px solid var(--color-divider);
-      padding-block: var(--space-8);
-      margin-top: var(--space-20);
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-    }
-    .footer-copy {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4);
-    }
-    .footer-links a {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-    }
-    .footer-links a:hover { color: var(--color-primary); }
-
-    @media (max-width: 640px) {
-      .site-nav a { display: none; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .stat-row { gap: var(--space-4); }
-    }
+    :root{--blue-900:#0f2d6e;--blue-800:#1a3f8f;--blue-700:#1d4ed8;--blue-600:#2563eb;--blue-500:#3b82f6;--blue-100:#dbeafe;--blue-50:#eff6ff;--green-700:#047857;--green-600:#059669;--green-100:#d1fae5;--slate-950:#020617;--slate-900:#0f172a;--slate-800:#1e293b;--slate-700:#334155;--slate-500:#64748b;--slate-300:#cbd5e1;--slate-200:#e2e8f0;--slate-100:#f1f5f9;--slate-50:#f8fafc;--white:#ffffff;--radius-xs:3px;--radius-sm:6px;--radius:10px;--radius-lg:16px;--shadow-xs:0 1px 2px rgba(0,0,0,.06);--shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow:0 4px 16px rgba(0,0,0,.10);--shadow-xl:0 20px 60px rgba(0,0,0,.15);--max-w:1220px;--font-body:'Plus Jakarta Sans',system-ui,sans-serif;--font-serif:'Lora',Georgia,serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{font-family:var(--font-body);background:var(--white);color:var(--slate-900);line-height:1.65;font-size:16px}
+    img{max-width:100%;display:block}
+    a{color:var(--blue-700)}
+    a:hover{color:var(--blue-900)}
+    ul,ol{padding-left:0;list-style:none}
+    .container{max-width:var(--max-w);margin:0 auto;padding:0 1.5rem}
+    .section{padding:5rem 0}
+    .section-sm{padding:3rem 0}
+    .text-center{text-align:center}
+    /* NAVBAR */
+    .site-header{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+    .navbar{display:flex;align-items:center;height:66px;gap:0;max-width:1220px;margin:0 auto;padding:0 1.5rem}
+    .nav-logo{font-size:1.1rem;font-weight:800;color:#1a3f8f;text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap;margin-right:1.5rem;flex-shrink:0}
+    .nav-logo-icon{width:34px;height:34px;background:#1d4ed8;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+    .nav-menu{display:flex;align-items:center;gap:0;flex:1;list-style:none;padding:0;margin:0}
+    .nav-item{position:relative}
+    .nav-link{display:flex;align-items:center;gap:.3rem;padding:0 .9rem;height:66px;font-size:.86rem;font-weight:600;color:#334155;text-decoration:none;white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+    .nav-link:hover,.nav-item:hover .nav-link,.nav-item.open .nav-link{color:#1d4ed8;border-bottom-color:#1d4ed8}
+    .nav-link svg{width:14px;height:14px;transition:transform .2s;flex-shrink:0}
+    .nav-item:hover .nav-link svg,.nav-item.open .nav-link svg{transform:rotate(180deg)}
+    .nav-dropdown{display:none;position:absolute;top:calc(100% + 2px);left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.15);padding:.75rem;min-width:270px;z-index:300}
+    .nav-item:hover .nav-dropdown,.nav-item.open .nav-dropdown{display:block}
+    .nav-dropdown a{display:block;padding:.6rem .85rem;font-size:.84rem;font-weight:500;color:#334155;text-decoration:none;border-radius:6px;border-left:2px solid transparent;transition:all .15s}
+    .nav-dropdown a:hover{background:#eff6ff;color:#1d4ed8;border-left-color:#1d4ed8}
+    .nav-dropdown-label{font-size:.7rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.08em;padding:.5rem .85rem .25rem;border-top:1px solid #f1f5f9;margin-top:.25rem}
+    .nav-dropdown-label:first-child{border-top:none;margin-top:0}
+    .nav-cta{margin-left:auto;background:#1d4ed8;color:#fff!important;padding:.55rem 1.1rem;border-radius:6px;font-size:.84rem;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s}
+    .nav-cta:hover{background:#0f2d6e!important;color:#fff!important}
+    .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:1px solid transparent;cursor:pointer;padding:8px;border-radius:6px;margin-left:.75rem;flex-shrink:0;transition:background .15s,border-color .15s}
+    .hamburger:hover{background:#f1f5f9;border-color:#e2e8f0}
+    .ham-bar{display:block;width:20px;height:2px;background:#334155;border-radius:2px;transition:transform .25s,opacity .2s,width .2s;transform-origin:center}
+    .hamburger.is-open .ham-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.is-open .ham-bar:nth-child(2){opacity:0;width:0}
+    .hamburger.is-open .ham-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:400;opacity:0;transition:opacity .25s}
+    .mobile-overlay.active{display:block;opacity:1}
+    .mobile-drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,90vw);background:#fff;z-index:500;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .mobile-drawer.active{transform:translateX(0)}
+    .mobile-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid #e2e8f0;position:sticky;top:0;background:#fff;z-index:10}
+    .mobile-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:#64748b;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+    .mobile-close:hover{background:#fee2e2;color:#dc2626}
+    .mob-section{padding:.85rem 1.5rem .4rem}
+    .mob-section+.mob-section{border-top:1px solid #f1f5f9}
+    .mob-section-label{font-size:.67rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:.09em;margin-bottom:.6rem}
+    .mob-section a{display:block;padding:.55rem 0;font-size:.88rem;font-weight:500;color:#334155;text-decoration:none;transition:color .15s}
+    .mob-section a:hover{color:#1d4ed8}
+    @media(max-width:900px){.nav-menu{display:none}.hamburger{display:flex}.nav-cta{display:none}}
+    @media(max-width:480px){.navbar{padding:0 1rem}.nav-logo{font-size:1rem}}
+    /* BREADCRUMB */
+    .breadcrumb{padding:.9rem 0;font-size:.82rem;color:var(--slate-500);border-bottom:1px solid var(--slate-100)}
+    .breadcrumb a{color:var(--blue-700);text-decoration:none;font-weight:500}
+    .breadcrumb a:hover{text-decoration:underline}
+    .breadcrumb-sep{margin:0 .4rem;color:#94a3b8}
+    /* PAGE HERO (mini) */
+    .page-hero{background:linear-gradient(135deg,var(--blue-900) 0%,var(--blue-800) 45%,var(--blue-700) 100%);color:#fff;padding:3.5rem 0 3rem;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+    .page-hero-inner{position:relative;z-index:1}
+    .page-hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.95);font-size:.75rem;font-weight:700;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem;letter-spacing:.06em;text-transform:uppercase}
+    .page-hero h1{font-size:clamp(1.8rem,4vw,2.75rem);font-weight:800;line-height:1.15;margin-bottom:.85rem;letter-spacing:-.02em}
+    .page-hero-desc{font-size:1rem;opacity:.9;max-width:560px;line-height:1.7}
+    /* CONTENT */
+    .content-wrap{max-width:860px;margin:0 auto}
+    .content-wrap h2{font-size:1.35rem;font-weight:800;color:var(--slate-900);margin:2.5rem 0 .75rem;letter-spacing:-.01em}
+    .content-wrap h3{font-size:1.1rem;font-weight:700;color:var(--slate-800);margin:1.75rem 0 .5rem}
+    .content-wrap p{font-size:.95rem;color:var(--slate-700);line-height:1.8;margin-bottom:1rem}
+    .content-wrap ul{margin-bottom:1rem}
+    .content-wrap ul li{font-size:.95rem;color:var(--slate-700);line-height:1.7;padding:.3rem 0 .3rem 1.25rem;position:relative}
+    .content-wrap ul li::before{content:"•";position:absolute;left:0;color:var(--blue-700);font-weight:700}
+    .content-wrap a{color:var(--blue-700);font-weight:600}
+    .content-wrap strong{color:var(--slate-900)}
+    .divider{border:none;border-top:1px solid var(--slate-200);margin:2.5rem 0}
+    /* INFO CARD */
+    .info-card{background:var(--blue-50);border:1px solid var(--blue-100);border-radius:var(--radius-lg);padding:1.5rem 2rem;margin:2rem 0}
+    .info-card p{color:var(--slate-700);font-size:.9rem;margin:0}
+    /* CONTACT FORM */
+    .contact-form{background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-sm)}
+    .form-group{margin-bottom:1.25rem}
+    .form-group label{display:block;font-size:.85rem;font-weight:700;color:var(--slate-800);margin-bottom:.4rem}
+    .form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;border:1.5px solid var(--slate-200);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:.9rem;color:var(--slate-900);background:var(--slate-50);transition:border-color .15s,box-shadow .15s;outline:none}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue-500);box-shadow:0 0 0 3px rgba(59,130,246,.15);background:var(--white)}
+    .form-group textarea{resize:vertical;min-height:130px}
+    .btn-submit{background:var(--blue-700);color:#fff;padding:.85rem 2.25rem;border-radius:var(--radius-sm);font-weight:700;font-size:.95rem;border:none;cursor:pointer;font-family:var(--font-body);transition:background .15s;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-submit:hover{background:var(--blue-900)}
+    .grid-2-contact{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    /* ABOUT CARDS */
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2.5rem 0}
+    .stat-card{background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:1.75rem;text-align:center;box-shadow:var(--shadow-xs)}
+    .stat-num{font-size:2.25rem;font-weight:900;color:var(--blue-700);line-height:1;margin-bottom:.35rem}
+    .stat-label{font-size:.85rem;color:var(--slate-500);font-weight:600}
+    .team-card{display:flex;align-items:flex-start;gap:1.25rem;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem}
+    .team-icon{width:52px;height:52px;background:var(--blue-700);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .team-info h4{font-size:1rem;font-weight:800;color:var(--slate-900);margin-bottom:.2rem}
+    .team-info p{font-size:.85rem;color:var(--slate-500);margin:0}
+    /* POLICY */
+    .toc{background:var(--slate-50);border:1px solid var(--slate-200);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:2.5rem}
+    .toc h4{font-size:.8rem;font-weight:800;color:var(--slate-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+    .toc ol{counter-reset:toc;padding-left:0}
+    .toc ol li{counter-increment:toc;padding:.25rem 0;font-size:.88rem}
+    .toc ol li a{color:var(--blue-700);text-decoration:none;font-weight:500}
+    .toc ol li a:hover{text-decoration:underline}
+    .policy-section{padding-top:1rem;border-top:1px solid var(--slate-100);margin-top:2.5rem}
+    .policy-section:first-of-type{border-top:none;margin-top:0}
+    .last-updated{display:inline-flex;align-items:center;gap:.4rem;background:var(--green-100);color:var(--green-700);font-size:.78rem;font-weight:700;padding:.3rem .8rem;border-radius:999px;margin-bottom:1.5rem}
+    /* FOOTER */
+    footer{background:var(--slate-950);color:rgba(255,255,255,.65);padding:4.5rem 0 2rem}
+    .footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:3rem}
+    .footer-brand-name{font-size:1rem;font-weight:800;color:white;display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem}
+    .footer-brand-name span{width:28px;height:28px;background:var(--blue-700);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+    .footer-desc{font-size:.82rem;line-height:1.7}
+    footer h4{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem}
+    footer ul li{margin-bottom:.45rem}
+    footer ul a{font-size:.82rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .15s;line-height:1.4}
+    footer ul a:hover{color:white}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:rgba(255,255,255,.4)}
+    .footer-bottom a{color:rgba(255,255,255,.5);text-decoration:none}
+    .footer-bottom a:hover{color:white}
+    .footer-legal-links{display:flex;gap:1.5rem}
+    .skip-link{position:absolute;left:-9999px;top:0;background:var(--blue-700);color:white;padding:.5rem 1rem;font-weight:700;z-index:9999}
+    .skip-link:focus{left:0}
+    @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}.stat-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.grid-2-contact{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr}}
+    @media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;align-items:flex-start}.contact-form{padding:1.5rem}}
   </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container">
-    <div class="header-inner">
-      <a href="/" class="site-logo">
-        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" aria-label="ConsentForms logo">
-          <rect width="32" height="32" rx="8" fill="var(--color-primary)" />
-          <rect x="8" y="9" width="16" height="2" rx="1" fill="white" />
-          <rect x="8" y="13" width="12" height="2" rx="1" fill="white" opacity="0.7" />
-          <rect x="8" y="17" width="14" height="2" rx="1" fill="white" opacity="0.7" />
-          <circle cx="22" cy="22" r="5" fill="white" />
-          <path d="M19.5 22l1.5 1.5L24 20" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        ConsentForms
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="InterviewConsentForms Home">
+        <span class="nav-logo-icon" aria-hidden="true">&#128203;</span>
+        InterviewConsentForms
       </a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="/">Home</a>
-        <a href="/about-us/">About</a>
-        <a href="/contact-us/">Contact</a>
-      </nav>
-      <button class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5" />
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-        </svg>
+      <ul class="nav-menu" role="list">
+        <li class="nav-item">
+          <a href="/interview-consent-form-for-research/" class="nav-link" aria-haspopup="true" aria-expanded="false">Research <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown" role="menu">
+            <p class="nav-dropdown-label">Research Forms</p>
+            <a href="/interview-consent-form-for-research/" role="menuitem">Research Interview Consent Form</a>
+            <a href="/informed-interview-consent-form/" role="menuitem">Informed Interview Consent Form</a>
+            <a href="/irb-interview-consent-form/" role="menuitem">IRB Interview Consent Form</a>
+            <a href="/qualitative-interview-consent-form/" role="menuitem">Qualitative Interview Consent Form</a>
+            <a href="/focus-group-interview-consent-form/" role="menuitem">Focus Group Interview Consent Form</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="/dissertation-interview-consent-form/" class="nav-link" aria-haspopup="true" aria-expanded="false">Academic <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown" role="menu">
+            <p class="nav-dropdown-label">Academic Forms</p>
+            <a href="/dissertation-interview-consent-form/" role="menuitem">Dissertation Interview Consent Form</a>
+            <a href="/student-interview-consent-form/" role="menuitem">Student Interview Consent Form</a>
+            <a href="/participant-interview-consent-form/" role="menuitem">Participant Interview Consent Form</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="/journalism-interview-consent-form/" class="nav-link" aria-haspopup="true" aria-expanded="false">Media &amp; Press <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown" role="menu">
+            <p class="nav-dropdown-label">Media &amp; Press Forms</p>
+            <a href="/journalism-interview-consent-form/" role="menuitem">Journalism Interview Consent Form</a>
+            <a href="/podcast-interview-consent-form/" role="menuitem">Podcast Interview Consent Form</a>
+            <a href="/media-interview-consent-form/" role="menuitem">Media Interview Consent Form</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="/online-interview-consent-form/" class="nav-link" aria-haspopup="true" aria-expanded="false">Online &amp; Remote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown" role="menu">
+            <p class="nav-dropdown-label">Online &amp; Remote Forms</p>
+            <a href="/online-interview-consent-form/" role="menuitem">Online Interview Consent Form</a>
+            <a href="/video-interview-consent-form/" role="menuitem">Video Interview Consent Form</a>
+            <a href="/recording-interview-consent-form/" role="menuitem">Recording Interview Consent Form</a>
+            <a href="/ux-interview-consent-form/" role="menuitem">UX Interview Consent Form</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="/interview-consent-form-template/" class="nav-link" aria-haspopup="true" aria-expanded="false">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="nav-dropdown" role="menu">
+            <p class="nav-dropdown-label">Templates &amp; Guides</p>
+            <a href="/interview-consent-form-template/" role="menuitem">Interview Consent Form Template</a>
+            <a href="/interview-consent-form-sample/" role="menuitem">Interview Consent Form Sample</a>
+            <a href="/simple-interview-consent-form/" role="menuitem">Simple Interview Consent Form</a>
+            <a href="/how-to-write-an-interview-consent-form/" role="menuitem">How to Write a Consent Form</a>
+            <a href="/what-is-an-interview-consent-form/" role="menuitem">What Is an Interview Consent Form?</a>
+          </div>
+        </li>
+      </ul>
+      <a href="/interview-consent-form/" class="nav-cta">Create Form Free &#8594;</a>
+      <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="ham-bar"></span><span class="ham-bar"></span><span class="ham-bar"></span>
       </button>
-    </div>
-  </div>
-</header>
-
-<main id="main-content">
-  <section class="page-hero">
-    <div class="container--narrow">
-      <span class="page-hero__label">About Us</span>
-      <h1 class="page-hero__title">Free Consent Forms for Everyone Who Asks Questions</h1>
-      <p class="page-hero__subtitle">ConsentForms was built to make ethical interviewing easy — for researchers, journalists, students, podcasters, UX designers, and anyone who collects information from real people.</p>
-    </div>
-  </section>
-
-  <div class="prose">
-    <div class="container--narrow">
-
-      <section>
-        <div class="mission-card">
-          <h2 style="font-size:var(--text-xl); margin-bottom:var(--space-4); border:none; padding:0;">Our Mission</h2>
-          <p>We believe that informed consent should never be a barrier. Whether you are a university student conducting dissertation interviews, a journalist speaking to a source, or a UX researcher running usability tests — you deserve professional, legally sound consent forms without paying for expensive software or legal consultations.</p>
-          <p>ConsentForms provides 21 types of free, downloadable interview consent forms in both PDF and Word format. Every template is designed to meet institutional, legal, and ethical standards — including IRB requirements, GDPR guidelines, and standard journalism ethics practices.</p>
-          <div class="stat-row">
-            <div class="stat-item">
-              <span class="stat-item__num">21</span>
-              <span class="stat-item__label">Form Types</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-item__num">100%</span>
-              <span class="stat-item__label">Free to Use</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-item__num">2</span>
-              <span class="stat-item__label">Formats: PDF &amp; Word</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-item__num">0</span>
-              <span class="stat-item__label">Sign-Ups Required</span>
-            </div>
-          </div>
-          <p>No account. No sign-up. No subscription. Every form is free to fill, download, and use for any purpose — personal, academic, or commercial.</p>
-        </div>
-      </section>
-
-      <section>
-        <h2>Who We Help</h2>
-        <p>ConsentForms is used by a wide range of professionals and students across the world. Our users include:</p>
-        <div class="value-grid">
-          <div class="value-item">
-            <h4>🎓 Academic Researchers</h4>
-            <p>Graduate students, PhD candidates, and faculty conducting IRB-approved human-subjects research who need compliant informed consent documents.</p>
-          </div>
-          <div class="value-item">
-            <h4>📰 Journalists &amp; Reporters</h4>
-            <p>Print and broadcast journalists, student journalists, and documentary filmmakers who need on-record consent and source release forms.</p>
-          </div>
-          <div class="value-item">
-            <h4>🎙️ Podcasters &amp; Media Creators</h4>
-            <p>Podcast hosts and video producers who need guest release and recording consent before publishing interviews online.</p>
-          </div>
-          <div class="value-item">
-            <h4>🖥️ UX Researchers</h4>
-            <p>Product designers and UX professionals running usability tests and user interviews who need GDPR-compliant session recording consent.</p>
-          </div>
-          <div class="value-item">
-            <h4>📚 Students &amp; Educators</h4>
-            <p>Undergraduate and postgraduate students running dissertation or thesis interviews, and teachers conducting classroom research projects.</p>
-          </div>
-          <div class="value-item">
-            <h4>🏢 Market Researchers</h4>
-            <p>Market research professionals and business analysts conducting focus groups, customer interviews, and qualitative research studies.</p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>What Makes ConsentForms Different</h2>
-        <p>There are many websites that offer generic consent form templates. ConsentForms is built differently:</p>
-        <ul>
-          <li><strong>Purpose-specific forms:</strong> Every form is designed for a specific interview type — not a one-size-fits-all template that users must heavily customise.</li>
-          <li><strong>IRB-compliant language:</strong> Our research forms meet Institutional Review Board standards used at major universities including Penn State, SNHU, UCL, University of Edinburgh, and UTS.</li>
-          <li><strong>Fill online, download instantly:</strong> Every form includes an online form builder. Users type in their details, see a live preview, and download a completed PDF or Word document in seconds.</li>
-          <li><strong>No paywalls or sign-ups:</strong> Every form on ConsentForms is permanently free. We do not charge for downloads, premium templates, or advanced features.</li>
-          <li><strong>Accessible globally:</strong> Our forms are used in research contexts across the United States, United Kingdom, Australia, Canada, Ireland, South Africa, Malaysia, and many other countries.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Our Commitment to Quality</h2>
-        <p>Every consent form template on ConsentForms is reviewed against relevant academic, legal, and professional standards before publication. We regularly update our templates to reflect changes in IRB requirements, data protection law, and best practices in research ethics.</p>
-        <p>Our guided articles — including our comprehensive guide on how to write an interview consent form — are written to provide genuine educational value, not just SEO filler. We want every visitor to leave ConsentForms with a clearer understanding of ethical interview practice.</p>
-        <div class="info-card info-card--highlight">
-          <h3 style="font-family:var(--font-body); font-size:var(--text-base); font-weight:700; margin-bottom:var(--space-2);">Have a question or feedback?</h3>
-          <p style="margin:0; font-size:var(--text-sm); color:var(--color-text-muted);">We welcome input from researchers, educators, and legal professionals. If you notice an error in a template or have a suggestion to improve our forms, please <a href="/contact-us/">get in touch</a>. We read every message.</p>
-        </div>
-      </section>
-
-      <section>
-        <h2>Our Values</h2>
-        <div class="value-grid">
-          <div class="value-item">
-            <h4>Accessibility First</h4>
-            <p>Ethical tools should be available to everyone regardless of budget, institution, or background.</p>
-          </div>
-          <div class="value-item">
-            <h4>Accuracy Matters</h4>
-            <p>We take responsibility for the accuracy of our templates and update them when standards change.</p>
-          </div>
-          <div class="value-item">
-            <h4>Privacy by Design</h4>
-            <p>We do not store form content you fill in. Your data is processed locally and never sent to our servers.</p>
-          </div>
-          <div class="value-item">
-            <h4>No Dark Patterns</h4>
-            <p>No fake free trials, surprise paywalls, or deceptive upsells. What you see is what you get — permanently free.</p>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-inner">
-      <p class="footer-copy">&copy; 2025 ConsentForms. All rights reserved.</p>
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="/">Home</a>
-        <a href="/about-us/">About Us</a>
-        <a href="/privacy-policy/">Privacy Policy</a>
-        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
-        <a href="/contact-us/">Contact Us</a>
+    </nav>
+    <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      <div class="mobile-drawer-header">
+        <a href="/" style="font-size:1rem;font-weight:800;color:#1a3f8f;text-decoration:none;display:flex;align-items:center;gap:.5rem;">
+          <span style="width:28px;height:28px;background:#1d4ed8;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;">&#128203;</span>
+          InterviewConsentForms
+        </a>
+        <button class="mobile-close" id="mobile-close-btn" aria-label="Close navigation menu">&#10005;</button>
+      </div>
+      <nav aria-label="Mobile navigation">
+        <div class="mob-section"><p class="mob-section-label">Research Forms</p><a href="/interview-consent-form-for-research/">Research Interview Consent Form</a><a href="/informed-interview-consent-form/">Informed Interview Consent Form</a><a href="/irb-interview-consent-form/">IRB Interview Consent Form</a><a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a></div>
+        <div class="mob-section"><p class="mob-section-label">Academic Forms</p><a href="/dissertation-interview-consent-form/">Dissertation Interview Consent Form</a><a href="/student-interview-consent-form/">Student Interview Consent Form</a><a href="/participant-interview-consent-form/">Participant Interview Consent Form</a></div>
+        <div class="mob-section"><p class="mob-section-label">Media &amp; Press</p><a href="/journalism-interview-consent-form/">Journalism Consent Form</a><a href="/podcast-interview-consent-form/">Podcast Consent Form</a><a href="/media-interview-consent-form/">Media Consent Form</a></div>
+        <div class="mob-section"><p class="mob-section-label">Online &amp; Remote</p><a href="/online-interview-consent-form/">Online Interview Consent Form</a><a href="/video-interview-consent-form/">Video Interview Consent Form</a><a href="/ux-interview-consent-form/">UX Interview Consent Form</a></div>
+        <div class="mob-section"><p class="mob-section-label">Resources</p><a href="/interview-consent-form-template/">Template</a><a href="/interview-consent-form-sample/">Samples &amp; Examples</a><a href="/how-to-write-an-interview-consent-form/">How to Write a Consent Form</a></div>
+        <div style="padding:1.25rem 1.5rem 2rem;"><a href="/interview-consent-form/" style="display:block;text-align:center;background:#1d4ed8;color:#fff;padding:.9rem;border-radius:8px;font-weight:700;font-size:.95rem;text-decoration:none;">Create Form Free &#8594;</a></div>
       </nav>
     </div>
-  </div>
-</footer>
+  </header>
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="about-heading">
+      <div class="container page-hero-inner">
+        <div class="page-hero-badge">About Us</div>
+        <h1 id="about-heading">Free Interview Consent Forms<br>for Everyone Who Needs Them</h1>
+        <p class="page-hero-desc">InterviewConsentForms is a free resource built to help researchers, journalists, students, UX professionals, podcasters, and academics create and download professional consent forms instantly — no sign-up, no cost.</p>
+      </div>
+    </section>
 
-<script>
-(function(){
-  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
-  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-  r.setAttribute('data-theme',d);
-  const sun='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-  const moon='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-  if(t){
-    if(d==='dark') t.innerHTML=moon;
-    t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);t.innerHTML=d==='dark'?sun:moon;});
-  }
-})();
-</script>
+    <nav class="breadcrumb container" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">›</span>
+      <span aria-current="page">About Us</span>
+    </nav>
+
+    <section class="section" aria-label="About statistics">
+      <div class="container">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-num">21</div>
+            <div class="stat-label">Free Form Templates</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Download Formats (PDF &amp; Word)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Free — No Sign-Up Required</div>
+          </div>
+        </div>
+
+        <div class="content-wrap">
+          <h2>Our Mission</h2>
+          <p>Interview consent forms are a critical part of ethical research, responsible journalism, and professional media production. Yet many researchers, students, and journalists struggle to find clear, legally sound, and ready-to-use templates — often resorting to poorly formatted Word documents found on outdated university portals.</p>
+          <p><strong>InterviewConsentForms was created to solve that.</strong> We provide 21 professionally designed, IRB-aligned interview consent form templates that cover every use case — from academic dissertations and qualitative research to journalism, podcasting, UX studies, and online interviews.</p>
+          <p>Every form on this site is free to fill out online, download as a PDF or Word document, and use immediately. No account. No subscription. No watermarks.</p>
+
+          <hr class="divider">
+
+          <h2>What We Offer</h2>
+          <p>Our library covers the full range of interview consent form types:</p>
+          <ul>
+            <li><strong>Research Forms</strong> — IRB-compliant templates for academic, qualitative, and social science research</li>
+            <li><strong>Academic Forms</strong> — Dissertation, student project, and participant consent forms</li>
+            <li><strong>Media &amp; Press Forms</strong> — Journalism, podcast, and documentary consent forms</li>
+            <li><strong>Online &amp; Remote Forms</strong> — Zoom, video, UX, and recording consent forms</li>
+            <li><strong>Templates &amp; Guides</strong> — Step-by-step guides on how to write and use consent forms</li>
+          </ul>
+
+          <div class="info-card">
+            <p>&#128203; <strong>Every form is reviewed for completeness</strong> — covering participant rights, data storage, confidentiality, voluntary participation, recording consent, and signature requirements as recommended by leading IRB guidelines and ethical research standards.</p>
+          </div>
+
+          <hr class="divider">
+
+          <h2>Who Uses InterviewConsentForms?</h2>
+          <div class="team-card">
+            <div class="team-icon">&#128300;</div>
+            <div class="team-info">
+              <h4>Academic Researchers</h4>
+              <p>University students and faculty conducting IRB-regulated qualitative research, dissertations, and human-subjects studies needing compliant consent documentation.</p>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-icon">&#128240;</div>
+            <div class="team-info">
+              <h4>Journalists &amp; Media Professionals</h4>
+              <p>Print journalists, documentary filmmakers, podcast hosts, and broadcast reporters who need clear consent documentation before recording or publishing interviews.</p>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-icon">&#128187;</div>
+            <div class="team-info">
+              <h4>UX Researchers &amp; Product Designers</h4>
+              <p>UX teams conducting user interviews, usability testing, and research sessions who need GDPR-aware consent forms for session recordings and data use.</p>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-icon">&#127891;</div>
+            <div class="team-info">
+              <h4>Students &amp; Educators</h4>
+              <p>Undergraduate and postgraduate students working on AP research, dissertation interviews, and class projects who need simple, professional consent documentation.</p>
+            </div>
+          </div>
+
+          <hr class="divider">
+
+          <h2>Our Commitment</h2>
+          <p>All templates on InterviewConsentForms are provided free of charge and will remain free. We do not sell user data, require account creation, or place restrictions on how you use the downloaded forms.</p>
+          <p>Our templates are intended as a starting point and general reference. For research governed by specific institutional IRB requirements, we recommend reviewing your institution's specific guidelines and consulting with your IRB office or legal counsel as appropriate.</p>
+          <p>Have a question or want to suggest a new form type? <a href="/contact-us/">Contact us</a> — we read every message.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name"><span aria-hidden="true">&#128203;</span>InterviewConsentForms</div>
+          <p class="footer-desc">Free interview consent form templates for researchers, journalists, students, UX designers, podcasters, and academics. Create, fill, and download in PDF or Word — no account needed.</p>
+        </div>
+        <nav aria-label="Research forms footer links">
+          <h4>Research</h4>
+          <ul>
+            <li><a href="/interview-consent-form-for-research/">Research Interview Consent Form</a></li>
+            <li><a href="/informed-interview-consent-form/">Informed Interview Consent Form</a></li>
+            <li><a href="/irb-interview-consent-form/">IRB Interview Consent Form</a></li>
+            <li><a href="/qualitative-interview-consent-form/">Qualitative Interview Consent Form</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Academic forms footer links">
+          <h4>Academic</h4>
+          <ul>
+            <li><a href="/dissertation-interview-consent-form/">Dissertation Consent Form</a></li>
+            <li><a href="/student-interview-consent-form/">Student Consent Form</a></li>
+            <li><a href="/participant-interview-consent-form/">Participant Consent Form</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Online forms footer links">
+          <h4>Online &amp; Remote</h4>
+          <ul>
+            <li><a href="/online-interview-consent-form/">Online Interview Consent Form</a></li>
+            <li><a href="/video-interview-consent-form/">Video Interview Consent Form</a></li>
+            <li><a href="/recording-interview-consent-form/">Recording Consent Form</a></li>
+            <li><a href="/ux-interview-consent-form/">UX Interview Consent Form</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Company links footer">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about-us/">About Us</a></li>
+            <li><a href="/contact-us/">Contact Us</a></li>
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&#169; 2026 InterviewConsentForms. Templates are provided for informational purposes only and do not constitute legal advice.</p>
+        <div class="footer-legal-links">
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+          <a href="/contact-us/">Contact</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+  (function(){
+    var btn=document.getElementById('hamburger-btn');
+    var drawer=document.getElementById('mobile-drawer');
+    var overlay=document.getElementById('mobile-overlay');
+    var closeBtn=document.getElementById('mobile-close-btn');
+    if(!btn||!drawer||!overlay)return;
+    function openMenu(){btn.classList.add('is-open');btn.setAttribute('aria-expanded','true');drawer.classList.add('active');drawer.setAttribute('aria-hidden','false');overlay.classList.add('active');document.body.style.overflow='hidden';var first=drawer.querySelector('a,button');if(first)first.focus();}
+    function closeMenu(){btn.classList.remove('is-open');btn.setAttribute('aria-expanded','false');drawer.classList.remove('active');drawer.setAttribute('aria-hidden','true');overlay.classList.remove('active');document.body.style.overflow='';btn.focus();}
+    btn.addEventListener('click',function(e){e.stopPropagation();btn.getAttribute('aria-expanded')==='true'?closeMenu():openMenu();});
+    if(closeBtn)closeBtn.addEventListener('click',closeMenu);
+    overlay.addEventListener('click',closeMenu);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu();});
+    document.querySelectorAll('.nav-link[aria-haspopup]').forEach(function(link){
+      link.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();var item=link.closest('.nav-item');var isOpen=item.classList.contains('open');document.querySelectorAll('.nav-item').forEach(function(i){i.classList.remove('open');i.querySelector('.nav-link').setAttribute('aria-expanded','false');});if(!isOpen){item.classList.add('open');link.setAttribute('aria-expanded','true');}}if(e.key==='Escape'){link.closest('.nav-item').classList.remove('open');link.setAttribute('aria-expanded','false');}});
+    });
+    document.addEventListener('click',function(e){if(!e.target.closest('.nav-item'))document.querySelectorAll('.nav-item').forEach(function(i){i.classList.remove('open');});});
+  })();
+  </script>
 </body>
 </html>
