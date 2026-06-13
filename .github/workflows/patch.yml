@@ -12,12 +12,19 @@ on:
           - 'true'
           - 'false'
 
+permissions:
+  contents: write
+
 jobs:
   patch:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,11 +39,11 @@ jobs:
         if: ${{ inputs.dry_run == 'false' }}
         run: python patch_site.py
 
-      - name: Commit changes
+      - name: Commit and push changes
         if: ${{ inputs.dry_run == 'false' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --staged --quiet || git commit -m "patch: canonical + cookie banner + author box + disclaimer"
-          git push
+          git push origin HEAD:${{ github.ref_name }}
