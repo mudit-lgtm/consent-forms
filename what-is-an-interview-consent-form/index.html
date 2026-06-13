@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Is an Interview Consent Form? — Definition, Purpose &amp; Requirements</title>
   <meta name="description" content="Learn what an interview consent form is, its legal purpose, who needs one, and when it's required. Covers employment, research, journalism, and telephone interviews.">
-  <link rel="canonical" href="https://consentforms.vercel.app/what-is-an-interview-consent-form/">
+  <link rel="canonical" href="https://consentforms.xyz/what-is-an-interview-consent-form/">
   <meta property="og:title" content="What Is an Interview Consent Form? — Definition, Purpose &amp; Requirements">
   <meta property="og:description" content="Learn what an interview consent form is, its legal purpose, who needs one, and when it's required.">
-  <meta property="og:url" content="https://consentforms.vercel.app/what-is-an-interview-consent-form/">
+  <meta property="og:url" content="https://consentforms.xyz/what-is-an-interview-consent-form/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://consentforms.vercel.app/assets/og/og-default.png">
   <meta property="og:site_name" content="InterviewConsentForms">
@@ -216,7 +216,34 @@
   </div>
 </section>
 
-  <footer class="ftv2" data-footer-version="fix_footer_v2" role="contentinfo">
+  <!-- patch_author_v1 -->
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;
+  padding:1.25rem 1.5rem;margin:2.5rem 0 1rem;display:flex;gap:1rem;
+  align-items:flex-start;font-family:inherit">
+  <div style="width:52px;height:52px;border-radius:50%;background:#1d4ed8;
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-size:1.1rem;font-weight:800;flex-shrink:0;letter-spacing:-.02em">
+    MA
+  </div>
+  <div style="min-width:0">
+    <p style="margin:0 0 .15rem;font-weight:800;font-size:.95rem;color:#0f172a">
+      Mudit Agarwal
+    </p>
+    <p style="margin:0 0 .5rem;font-size:.78rem;color:#64748b;font-weight:600">
+      Digital Marketing Specialist &amp; Web Content Researcher
+    </p>
+    <p style="margin:0;font-size:.82rem;color:#475569;line-height:1.65">
+      Mudit Agarwal is a digital marketer with 8+ years of experience in content strategy and web publishing. He built ConsentForms.xyz to help researchers, journalists, UX designers, and students access professionally structured consent templates. All templates are researched against IRB guidelines, APA standards, and institutional requirements.
+      <a href="https://consentforms.xyz/about-us/" style="color:#1d4ed8;font-weight:700"> Learn more &rarr;</a>
+    </p>
+    <p style="margin:.55rem 0 0;font-size:.76rem;color:#94a3b8">
+      &#128197; Last reviewed: June 2026 &nbsp;&bull;&nbsp;
+      <a href="https://www.linkedin.com/in/mudit-agarwal-62b03939/" target="_blank" rel="noopener noreferrer"
+        style="color:#1d4ed8;font-weight:600">LinkedIn Profile</a>
+    </p>
+  </div>
+</div>
+<footer class="ftv2" data-footer-version="fix_footer_v2" role="contentinfo">
     <div class="ftv2-inner">
 
       <!-- Brand -->
@@ -301,5 +328,46 @@
     </div>
   </footer>
 <script src="/js/main.js" defer></script>
+
+<!-- patch_cookie_v1 -->
+<div id="cf-cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;
+  background:#0f172a;color:#e2e8f0;padding:1rem 1.5rem;z-index:99999;
+  font-family:inherit;font-size:.83rem;border-top:1px solid #1e293b;
+  box-shadow:0 -4px 24px rgba(0,0,0,.35)">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;
+    justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <p style="margin:0;line-height:1.6">
+      We use cookies, including Google AdSense advertising cookies, to improve your
+      experience and serve relevant ads. Read our
+      <a href="/privacy-policy/" style="color:#93c5fd;font-weight:600">Privacy Policy</a>
+      to learn more.
+    </p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0">
+      <button onclick="cfAcceptCookies()"
+        style="background:#1d4ed8;color:#fff;border:none;padding:.45rem 1.1rem;
+          border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;
+          font-size:.82rem">Accept All</button>
+      <button onclick="cfDeclineCookies()"
+        style="background:transparent;color:#94a3b8;border:1px solid #334155;
+          padding:.45rem 1rem;border-radius:6px;cursor:pointer;font-family:inherit;
+          font-size:.82rem">Decline</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var k = 'cf_cookie_consent';
+  var v = localStorage.getItem(k);
+  if (!v) { document.getElementById('cf-cookie-bar').style.display = 'block'; }
+  window.cfAcceptCookies = function() {
+    localStorage.setItem(k, 'accepted');
+    document.getElementById('cf-cookie-bar').style.display = 'none';
+  };
+  window.cfDeclineCookies = function() {
+    localStorage.setItem(k, 'declined');
+    document.getElementById('cf-cookie-bar').style.display = 'none';
+  };
+})();
+</script>
 </body>
 </html>

@@ -13,13 +13,13 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="author" content="InterviewConsentForms">
   <meta name="theme-color" content="#1d4ed8">
-  <link rel="canonical" href="https://consentforms.vercel.app/">
+  <link rel="canonical" href="https://consentforms.xyz/">
 
   <!-- ═══════════════════════════════════════════════════════
        OPEN GRAPH
   ═══════════════════════════════════════════════════════ -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://consentforms.vercel.app/">
+  <meta property="og:url" content="https://consentforms.xyz/">
   <meta property="og:title" content="Interview Consent Forms — Free Create, Fill &amp; Download | PDF &amp; Word">
   <meta property="og:description" content="Create and download free interview consent forms for research, journalism, UX, dissertation, podcast, IRB, and more. Fill online, download as PDF or Word instantly.">
   <meta property="og:image" content="https://consentforms.vercel.app/assets/og/og-homepage.png">
@@ -1771,5 +1771,46 @@
     });
   })();
   </script>
+
+<!-- patch_cookie_v1 -->
+<div id="cf-cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;
+  background:#0f172a;color:#e2e8f0;padding:1rem 1.5rem;z-index:99999;
+  font-family:inherit;font-size:.83rem;border-top:1px solid #1e293b;
+  box-shadow:0 -4px 24px rgba(0,0,0,.35)">
+  <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;
+    justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <p style="margin:0;line-height:1.6">
+      We use cookies, including Google AdSense advertising cookies, to improve your
+      experience and serve relevant ads. Read our
+      <a href="/privacy-policy/" style="color:#93c5fd;font-weight:600">Privacy Policy</a>
+      to learn more.
+    </p>
+    <div style="display:flex;gap:.6rem;flex-shrink:0">
+      <button onclick="cfAcceptCookies()"
+        style="background:#1d4ed8;color:#fff;border:none;padding:.45rem 1.1rem;
+          border-radius:6px;cursor:pointer;font-family:inherit;font-weight:700;
+          font-size:.82rem">Accept All</button>
+      <button onclick="cfDeclineCookies()"
+        style="background:transparent;color:#94a3b8;border:1px solid #334155;
+          padding:.45rem 1rem;border-radius:6px;cursor:pointer;font-family:inherit;
+          font-size:.82rem">Decline</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var k = 'cf_cookie_consent';
+  var v = localStorage.getItem(k);
+  if (!v) { document.getElementById('cf-cookie-bar').style.display = 'block'; }
+  window.cfAcceptCookies = function() {
+    localStorage.setItem(k, 'accepted');
+    document.getElementById('cf-cookie-bar').style.display = 'none';
+  };
+  window.cfDeclineCookies = function() {
+    localStorage.setItem(k, 'declined');
+    document.getElementById('cf-cookie-bar').style.display = 'none';
+  };
+})();
+</script>
 </body>
 </html>
