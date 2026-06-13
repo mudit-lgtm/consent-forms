@@ -1,0 +1,42 @@
+name: Patch Site
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only? (true = preview, false = live patch)'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run dry run
+        if: ${{ inputs.dry_run == 'true' }}
+        run: python patch_site.py --dry-run
+
+      - name: Run live patch
+        if: ${{ inputs.dry_run == 'false' }}
+        run: python patch_site.py
+
+      - name: Commit changes
+        if: ${{ inputs.dry_run == 'false' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "patch: canonical + cookie banner + author box + disclaimer"
+          git push
