@@ -1,0 +1,32 @@
+name: Fix Sitemap
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fix sitemap domain + date
+        run: |
+          sed -i 's|https://consentforms.vercel.app/|https://consentforms.xyz/|g' sitemap.xml
+          sed -i 's|2026-03-23|2026-06-14|g' sitemap.xml
+          echo "✅ Sitemap fixed:"
+          cat sitemap.xml
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git diff --staged --quiet || git commit -m "fix: update sitemap domain to consentforms.xyz"
+          git push origin HEAD:${{ github.ref_name }}
